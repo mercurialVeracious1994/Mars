@@ -2,8 +2,8 @@
 import { Command } from "../enums/Commands";
 import { Direction } from "../enums/Direction";
 import { Coordinate, Location } from "../enums/Location";
-import { DirectionMap } from "../utility/DirectionMap";
-import { isValidLocation } from "../utility/validateMarsLocation";
+import { DirectionMap } from "../utility/directionMap";
+import { isValidLocation } from "../utility/validation";
 
 type TrackCommand = {
   currentLocation: Location;
@@ -37,7 +37,7 @@ export class Robot {
       this.latestLocation.coordinate = location;
       this.trackCommand(Command.MOVE, prevLocation);
     } else {
-      console.log("Will fall off from edge, skipping the command MOVE");
+      console.log("Skipping the command MOVE");
     }
   };
 
