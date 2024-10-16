@@ -1,19 +1,22 @@
+
+import { Coordinate } from "../enums/Location";
 import { Robot } from "./robot";
 
 export class Mars {
-     MAX_X_AXIS: number;
-     MAX_Y_AXIS: number;
-    robots: Robot[] | undefined;
-    
-    constructor(robots?: Robot[], x =5,  y =5){
-        this.MAX_X_AXIS = x;
-        this.MAX_Y_AXIS = y;
-        this.robots = robots;
+    static MAX_COORDINATE:Coordinate = { x: 5, y: 5 };
+    static robots: Robot[] = [];
+    static obstacles: Coordinate[] = [];
+
+    public static getCoordinateLimit = (): Coordinate => {
+        return Mars.MAX_COORDINATE;
+    };
+    public static landRobot = (robot: Robot): void => {
+        Mars.robots?.push(robot);
+    };
+    public static updateCoordinateLimit = (coordinate: Coordinate) => {
+        Mars.MAX_COORDINATE = coordinate;
     }
-    getCoordinateLimit = () => {
-        return {x: this.MAX_X_AXIS, y: this.MAX_Y_AXIS};
-    }
-    landRobot = (robot: Robot) => {
-        this.robots?.push(robot);
+    public static getObstacles(): Coordinate[] {
+        return Mars.obstacles;
     }
 }
