@@ -71,11 +71,17 @@ export class Robot {
       x: parseInt(robotInstructions[0]),
       y: parseInt(robotInstructions[1]),
     };
-    this.latestLocation = {
-      coordinate,
-      direction: robotInstructions[2].toString() as Direction,
-    };
-    this.trackCommand(Command.PLACE, prevLocation);
+    if(isValidLocation(coordinate))
+    {
+      this.latestLocation = {
+        coordinate,
+        direction: robotInstructions[2].toString() as Direction,
+      };
+      this.trackCommand(Command.PLACE, prevLocation);
+    }
+    else {
+      console.log("Skipping the command PLACE");
+    }
   };
 
   trackCommand = (command: string, prevLocation: Location) => {

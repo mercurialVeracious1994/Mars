@@ -5,7 +5,7 @@ import { Robot } from "./robot";
 export class Mars {
     static MAX_COORDINATE:Coordinate = { x: 5, y: 5 };
     static robots: Robot[] = [];
-    static obstacles: Coordinate[] = [];
+    static obstacles: Coordinate[] | [] = [];
 
     public static getCoordinateLimit = (): Coordinate => {
         return Mars.MAX_COORDINATE;
@@ -18,5 +18,8 @@ export class Mars {
     }
     public static getObstacles(): Coordinate[] {
         return Mars.obstacles;
+    }
+    public static updateObstacles =(obstacles: Coordinate[]) => {
+        Mars.obstacles = obstacles;
     }
 }
